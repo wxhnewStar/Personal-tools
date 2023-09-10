@@ -1,6 +1,10 @@
 import os
-import sys
 import re
+import sys
+
+# there are tow types of reference of image in old markdown files
+default_pattern = re.compile(r'!\[.*?]\(.*?\)')
+html_pattern = re.compile(r'<img.*?src=.*?>')
 
 
 # function to get the path to the folder containing the images to be unified
@@ -67,15 +71,19 @@ def showImageReferenceWay(cur_item):
     file = open(cur_item.name, "r")
     if (file == None):
         print("open file failed")
+        sys.exit(-1)
     content = file.read()
     file.close()
 
     # find all image reference
-    pattern = re.compile(r'!\[.*?]\(.*?\)')
-    image_refs = pattern.findall(content)
+    image_refs_1 = default_pattern.findall(content)
+    image_refs_2 = html_pattern.findall(content)
 
     # show the way of image reference
-    for imageRef in image_refs:
+    for imageRef in image_refs_1:
+        print(imageRef)
+    print("\n--------------------------------------------------\n")
+    for imageRef in image_refs_2:
         print(imageRef)
 
 
@@ -95,7 +103,7 @@ def directoryLevel(file_name):
 
 
 # fix each line of image reference
-def fixLine(line, file_name):
+def defaultFixLine(line, file_name):
     if "http" in line:
         return line
 
@@ -107,20 +115,37 @@ def fixLine(line, file_name):
         return re.sub(r"\(.*Typora files/", "(" + pre_fix, fix_line)
     return fix_line
 
+def htmlFixLine(line, file_name):
+    if "http" in line:
+        return line
+
+    fix_line = line.replace("\\", "/")
+    if "../" in fix_line:
+        return fix_line
+    if "图库" in fix_line:
+        pre_fix = "../" * directoryLevel(file_name)
+        return re.sub(r"src=.*Typora files/", "src=\"" + pre_fix, fix_line)
+    return fix_line
+
 
 #  check and fix the reference of image for given file
 def fixImageReference(cur_item):
     if not isMarkdownFile(cur_item):
         return
 
-    pattern = re.compile(r'!\[.*?]\(.*?\)')
     write_lines = []
     with open(cur_item.name, "r") as file:
         for line in file:
-            if pattern.match(line):
-                new_line = fixLine(line, cur_item.name)
+            if default_pattern.match(line):
+                new_line = defaultFixLine(line, cur_item.name)
                 # print(f"previous line is [{line}],and new line is [{new_line}] ")
                 write_lines.append(new_line)
+                # print("-----------------------------------\n")
+            elif html_pattern.match(line):
+                new_line = htmlFixLine(line, cur_item.name)
+                # print(f"previous line is [{line}],and new line is [{new_line}] ")
+                write_lines.append(new_line)
+                # print("-----------------------------------\n")
             else:
                 write_lines.append(line)
     with open(cur_item.name, "w") as file:
@@ -128,8 +153,15 @@ def fixImageReference(cur_item):
 
 
 if __name__ == '__main__':
+
     unifiedPath = getUserInput()
     fileTree = buildFileTree(unifiedPath)
     # fileTree.print_structure()
     # fileTree.hierachyFunc(showImageReferenceWay)
+
     fileTree.hierachyFunc(fixImageReference)
+
+    print("Done!")
+
+
+
