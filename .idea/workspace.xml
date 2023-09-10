@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25ee17b2-9d97-4b11-bde7-51bb19217391" name="Changes" comment="add:current fail reference of my notebook">
+    <list default="true" id="25ee17b2-9d97-4b11-bde7-51bb19217391" name="Changes" comment="add:fix default reference &amp; html-style reference ways.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageRefUnifier/ImageRefUnifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageRefUnifier/ImageRefUnifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageRefUnifier/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ImageRefUnifier/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +104,7 @@
       <workItem from="1693756376993" duration="22000" />
       <workItem from="1693796973083" duration="602000" />
       <workItem from="1694317931368" duration="1846000" />
-      <workItem from="1694322865622" duration="2897000" />
+      <workItem from="1694322865622" duration="5626000" />
     </task>
     <task id="LOCAL-00001" summary="add:ImageRefUnifiler build file tree from User input path">
       <option name="closed" value="true" />
@@ -138,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693751525520</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add:fix default reference &amp; html-style reference ways.">
+      <option name="closed" value="true" />
+      <created>1694341004700</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694341004700</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +157,8 @@
     <MESSAGE value="config:pycharm configuration files" />
     <MESSAGE value="add: recognize the format of &quot;![]()&quot;, and fix these fail reference. In addition,change the '\' to '/'." />
     <MESSAGE value="add:current fail reference of my notebook" />
-    <option name="LAST_COMMIT_MESSAGE" value="add:current fail reference of my notebook" />
+    <MESSAGE value="add:fix default reference &amp; html-style reference ways." />
+    <option name="LAST_COMMIT_MESSAGE" value="add:fix default reference &amp; html-style reference ways." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Personal_tools$ImageRefUnifier.coverage" NAME="ImageRefUnifier Coverage Results" MODIFIED="1694340713315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ImageRefUnifier" />
